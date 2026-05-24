@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# Assembly: Endgame (TS + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Assembly Endgame
 
-Currently, two official plugins are available:
+Assembly Endgame is a fun word guessing game built with React and TypeScript.  
+The player must guess the hidden word one letter at a time before all programming languages are eliminated.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Interactive on-screen keyboard
+- Random word generation
+- Win and lose game states
+- Farewell messages for lost languages
+- Confetti animation when winning
+- Disabled keyboard after game over
+- Tracks wrong guesses
+- Responsive UI design
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
 
-## Expanding the ESLint configuration
+- React
+- JavaScript / TypeScript
+- CSS
+- Vite
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Learning Steps
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Project Planning  
+2. Header Section  
+3. Status Section  
+4. Languages List  
+5. Word Display  
+6. Keyboard  
+7. Save the guessed letters  
+8. Keyboard letter styles for guesses  
+9. Only display correctly guessed letters  
+10. Wrong guess count  
+11. Lost languages  
+12. isGameOver logic  
+13. Display won/lost status  
+14. Farewell messages  
+15. Disable keyboard when game is over  
+16. Random word generation  
+17. New game reset button  
+18. Missed letters display  
+19. Confetti animation  
+20. Accessibility improvements  
+21. Refactoring logic  
+22. Utility functions  
+23. Conditional rendering cleanup  
+24. Final styling polish  
+25. Final project completion
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+## Gameplay
+
+1. When the page loads, the game randomly selects a `currentWord` to guess.
+2. Click letters on the on-screen **keyboard**.
+3. Your chosen letters are tracked in state.
+4. Each wrong guess increases the number of failures.
+5. The game ends when you either:
+   - **Win**: all letters in the current word are guessed.
+   - **Lose**: you reach the maximum allowed wrong guesses.
+
+## What you see on screen
+
+- **Header**: title and instructions.
+- **Language chips** (`src/languages.js`): show progress/penalties as you get wrong.
+- **Word display**: letters are revealed only when guessed (or after you lose).
+- **Keyboard**: each letter button changes style based on whether it was guessed correctly or incorrectly.
+- **Win/Lose end screen**:
+  - Win shows a “You win!” message and triggers **confetti**.
+  - Lose shows a “Game over!” message.
+- **Farewell message**: when you’re close to losing and your last guess is wrong, the app displays a randomized message.
+
+## How it works (key implementation ideas)
+
+- Uses React hooks (`useState`) to store:
+  - `currentWord`
+  - guessed letters
+- Uses derived values to compute:
+  - wrong guess count
+  - win/loss state
+  - what letters to reveal
+- Button click handlers update the guessed letters while preventing duplicate guesses.
+
+## Output
+![alt text](image.png)
+![alt text](<Screenshot 2026-05-23 050321.png>)
+![alt text](<Screenshot 2026-05-23 045800.png>)
+
+## Getting started
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open the URL shown by Vite (typically `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Common scripts are defined in `package.json` (e.g., `dev`, `build`, `preview`).
+
